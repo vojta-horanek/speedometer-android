@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     tools:context=".fragments.TrackingFragment">
 
     <LinearLayout
@@ -79,13 +79,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
+                        android:text="@string/start"
+                        app:icon="@drawable/ic_start"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/text_ready_status"
-                        app:layout_constraintVertical_bias="0.0"
-                        app:icon="@drawable/ic_start"
-                        android:text="@string/start" />
+                        app:layout_constraintVertical_bias="0.0" />
 
                     <TextView
                         android:id="@+id/text_tap"

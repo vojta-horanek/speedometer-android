@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        SharedPref.init(applicationContext);
+        SharedPref.init(applicationContext)
 
         setSupportActionBar(binding.toolbar)
 
