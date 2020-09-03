@@ -1,4 +1,4 @@
-package eu.vojtechh.speedometer
+package eu.vojtechh.speedometer.fragments
 
 import android.Manifest
 import android.content.BroadcastReceiver
@@ -10,24 +10,22 @@ import android.content.res.ColorStateList
 import android.net.ConnectivityManager
 import android.net.Network
 import android.net.NetworkCapabilities
-import android.net.NetworkRequest
 import android.net.wifi.WifiInfo
 import android.net.wifi.WifiManager
-import android.net.wifi.WifiNetworkSpecifier
-import android.opengl.Visibility
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.widget.ImageViewCompat
 import androidx.fragment.app.Fragment
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.google.android.material.snackbar.Snackbar
-import eu.vojtechh.speedometer.data.DeviceInfo
+import eu.vojtechh.speedometer.R
 import eu.vojtechh.speedometer.databinding.FragmentTrackingBinding
+import eu.vojtechh.speedometer.models.DeviceInfo
 import eu.vojtechh.speedometer.other.Constants.ACTION_PAUSE_SERVICE
+import eu.vojtechh.speedometer.other.Constants.ACTION_SHOW_TRACKING_UI
 import eu.vojtechh.speedometer.other.Constants.ACTION_START_OR_RESUME_SERVICE
 import eu.vojtechh.speedometer.other.Constants.ACTION_STOP_SERVICE
 import eu.vojtechh.speedometer.other.Constants.DEVICE_SSID
@@ -41,6 +39,7 @@ import eu.vojtechh.speedometer.other.Constants.MSG_TYPE_ERROR
 import eu.vojtechh.speedometer.other.Constants.MSG_TYPE_STATUS
 import eu.vojtechh.speedometer.other.Constants.MSG_TYPE_WIFI_CALLBACK
 import eu.vojtechh.speedometer.other.Constants.REQUEST_CODE_LOCATION_PERMISSION
+import eu.vojtechh.speedometer.services.TrackingService
 import pub.devrel.easypermissions.AppSettingsDialog
 import pub.devrel.easypermissions.EasyPermissions
 import java.util.*
@@ -52,7 +51,7 @@ class TrackingFragment : Fragment(R.layout.fragment_tracking), EasyPermissions.P
 
     private var _binding: FragmentTrackingBinding? = null
     private val binding get() = _binding!!
-    lateinit var cm: ConnectivityManager
+    private lateinit var connectivityManager: ConnectivityManager
 
     private var isTracking = false
 
@@ -61,7 +60,6 @@ class TrackingFragment : Fragment(R.layout.fragment_tracking), EasyPermissions.P
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         _binding = FragmentTrackingBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -69,8 +67,9 @@ class TrackingFragment : Fragment(R.layout.fragment_tracking), EasyPermissions.P
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         requestPermissions()
-        cm = requireContext().getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager
-        cm.registerDefaultNetworkCallback(networkCallback)
+        connectivityManager =
+            requireContext().getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager
+        connectivityManager.registerDefaultNetworkCallback(networkCallback)
         LocalBroadcastManager.getInstance(requireContext()).registerReceiver(
             (intentReceived),
             IntentFilter(INTENT_ACTION)
@@ -179,6 +178,11 @@ class TrackingFragment : Fragment(R.layout.fragment_tracking), EasyPermissions.P
         }
 
     private fun initializeUi() {
+        //TODO Show tracking ui if TrackingService is running -> Test
+        arguments?.getBoolean(ACTION_SHOW_TRACKING_UI)?.let {
+            showTrackingUi(it)
+        }
+
         showDeviceConnectedUi(getConnectedState())
 
         binding.stopButton.setOnClickListener { stopTracking() }
@@ -259,17 +263,17 @@ class TrackingFragment : Fragment(R.layout.fragment_tracking), EasyPermissions.P
         val minutes = TimeUnit.MILLISECONDS.toMinutes(milliseconds)
         milliseconds -= TimeUnit.MINUTES.toMillis(minutes)
         val seconds = TimeUnit.MILLISECONDS.toSeconds(milliseconds)
-        if(!includeMillis) {
-            return "${if(hours < 10) "0" else ""}$hours:" +
-                    "${if(minutes < 10) "0" else ""}$minutes:" +
-                    "${if(seconds < 10) "0" else ""}$seconds"
+        if (!includeMillis) {
+            return "${if (hours < 10) "0" else ""}$hours:" +
+                    "${if (minutes < 10) "0" else ""}$minutes:" +
+                    "${if (seconds < 10) "0" else ""}$seconds"
         }
         milliseconds -= TimeUnit.SECONDS.toMillis(seconds)
         milliseconds /= 10
-        return "${if(hours < 10) "0" else ""}$hours:" +
-                "${if(minutes < 10) "0" else ""}$minutes:" +
-                "${if(seconds < 10) "0" else ""}$seconds:" +
-                "${if(milliseconds < 10) "0" else ""}$milliseconds"
+        return "${if (hours < 10) "0" else ""}$hours:" +
+                "${if (minutes < 10) "0" else ""}$minutes:" +
+                "${if (seconds < 10) "0" else ""}$seconds:" +
+                "${if (milliseconds < 10) "0" else ""}$milliseconds"
     }
 
     private fun updateDisplayTime(durationMillis: Long) {
@@ -336,7 +340,7 @@ class TrackingFragment : Fragment(R.layout.fragment_tracking), EasyPermissions.P
     override fun onDestroy() {
         super.onDestroy()
         LocalBroadcastManager.getInstance(requireContext()).unregisterReceiver(intentReceived)
-        cm.unregisterNetworkCallback(networkCallback)
+        connectivityManager.unregisterNetworkCallback(networkCallback)
     }
 
     private fun startTracking() =

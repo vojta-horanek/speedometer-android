@@ -1,3 +1,3 @@
-package eu.vojtechh.speedometer.data
+package eu.vojtechh.speedometer.models
 
 data class DeviceInfo(var speed: Float, var distance: Float)

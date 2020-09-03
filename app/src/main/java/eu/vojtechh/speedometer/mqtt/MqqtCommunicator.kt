@@ -1,17 +1,18 @@
-package eu.vojtechh.speedometer
+package eu.vojtechh.speedometer.mqtt
 
 import android.content.Context
 import android.util.Log
-import eu.vojtechh.speedometer.data.DeviceInfo
+import eu.vojtechh.speedometer.R
 import eu.vojtechh.speedometer.interfaces.MqttCommunicatorInterface
+import eu.vojtechh.speedometer.models.DeviceInfo
 import eu.vojtechh.speedometer.other.Constants.KEY_DISTANCE
-
 import eu.vojtechh.speedometer.other.Constants.KEY_SPEED
 import eu.vojtechh.speedometer.other.Constants.MQTT_CLIENT_ID
 import eu.vojtechh.speedometer.other.Constants.SERVER_URI
 import eu.vojtechh.speedometer.other.Constants.TOPIC_CONFIG_CONTROL
 import eu.vojtechh.speedometer.other.Constants.TOPIC_CONFIG_WHEEL
 import eu.vojtechh.speedometer.other.Constants.TOPIC_SPEEDOMETER_UPDATE
+import eu.vojtechh.speedometer.utils.SharedPref
 import org.eclipse.paho.android.service.MqttAndroidClient
 import org.eclipse.paho.client.mqttv3.*
 import org.json.JSONObject

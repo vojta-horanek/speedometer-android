@@ -1,14 +1,21 @@
-package eu.vojtechh.speedometer
+package eu.vojtechh.speedometer.services
 
-import android.app.*
+import android.app.Notification
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.Intent
 import androidx.core.app.NotificationCompat
 import androidx.lifecycle.LifecycleService
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
-import eu.vojtechh.speedometer.data.DeviceInfo
+import eu.vojtechh.speedometer.MainActivity
+import eu.vojtechh.speedometer.R
 import eu.vojtechh.speedometer.interfaces.MqttCommunicatorInterface
+import eu.vojtechh.speedometer.models.DeviceInfo
+import eu.vojtechh.speedometer.models.SessionDataItem
+import eu.vojtechh.speedometer.mqtt.MqqtCommunicator
 import eu.vojtechh.speedometer.other.Constants.ACTION_PAUSE_SERVICE
 import eu.vojtechh.speedometer.other.Constants.ACTION_START_OR_RESUME_SERVICE
 import eu.vojtechh.speedometer.other.Constants.ACTION_STOP_SERVICE

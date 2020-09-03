@@ -1,4 +1,4 @@
-package eu.vojtechh.speedometer
+package eu.vojtechh.speedometer.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,7 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
+import eu.vojtechh.speedometer.R
 import eu.vojtechh.speedometer.databinding.FragmentSettingsBinding
+import eu.vojtechh.speedometer.utils.SharedPref
 
 class SettingsFragment : Fragment() {
     private var _binding: FragmentSettingsBinding? = null

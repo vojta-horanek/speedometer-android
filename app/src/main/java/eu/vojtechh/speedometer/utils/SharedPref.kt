@@ -1,4 +1,4 @@
-package eu.vojtechh.speedometer
+package eu.vojtechh.speedometer.utils
 
 import android.app.Activity
 import android.content.Context

@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/page_tracking">
     <fragment
         android:id="@+id/page_tracking"
-        android:name="eu.vojtechh.speedometer.TrackingFragment"
+        android:name="eu.vojtechh.speedometer.fragments.TrackingFragment"
         android:label="TrackingFragment" />
     <fragment
         android:id="@+id/page_history"
-        android:name="eu.vojtechh.speedometer.HistoryFragment"
+        android:name="eu.vojtechh.speedometer.fragments.HistoryFragment"
         android:label="HistoryFragment" />
     <fragment
         android:id="@+id/page_settings"
-        android:name="eu.vojtechh.speedometer.SettingsFragment"
+        android:name="eu.vojtechh.speedometer.fragments.SettingsFragment"
         android:label="SettingFragment" />
 </navigation>
