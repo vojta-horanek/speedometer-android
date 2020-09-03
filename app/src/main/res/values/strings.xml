@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">Speedometer</string>
+    <string name="start">Start</string>
+    <string name="configuration">Configuration</string>
+    <string name="save">Save</string>
+    <string name="wheel_diameter">Wheel Diameter</string>
+    <string name="tracking">Tracking</string>
+    <string name="history">History</string>
+    <string name="settings">Settings</string>
+    <string name="distance_traveled">Distance Traveled</string>
+    <string name="average_speed">Average Speed</string>
+    <string name="current_speed">Current Speed</string>
+    <string name="stop">Stop</string>
+    <string name="connection_ready">Connection Ready</string>
+    <string name="empty_wheel_diam">Diameter can\'t be empty</string>
+    <string name="configuration_saved">Configuration saved</string>
+    <string name="tracking_started">Tracking started</string>
+    <string name="tracking_stopped">Stopping and saving session</string>
+    <string name="disconnected">Disconnected</string>
+    <string name="connected">Connected</string>
+    <string name="connect">Connect</string>
+    <string name="pause">Pause</string>
+    <string name="tracking_service_channel">Tracking Service</string>
+    <string name="tracking_notification">Speedometer running</string>
+    <string name="connection_error">Could not connect</string>
+    <string name="unexpected_error">Unexpected error occured</string>
+    <string name="subsciption_error">Could not subscribe to device messages</string>
+    <string name="lost_connection_error">Lost connection to device</string>
+    <string name="tracking_paused">Tracking Paused</string>
+    <string name="tracking_unpaused">Tracking Restored</string>
+    <string name="resume">Resume</string>
+    <string name="cannot_connect">Cannot connect to device</string>
+    <string name="connect_message">Approach the NFC tag on your speedometer or connect to its Wi-Fi manually</string>
+    <string name="approach_nfc">Approach NFC</string>
+</resources>

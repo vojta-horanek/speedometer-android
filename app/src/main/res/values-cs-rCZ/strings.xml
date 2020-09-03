@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Tachometr</string>
+    <string name="start">Zahájit</string>
+    <string name="configuration">Konfigurace</string>
+    <string name="save">Uložit</string>
+    <string name="wheel_diameter">Průměr kola</string>
+    <string name="tracking">Sledování</string>
+    <string name="history">Historie</string>
+    <string name="settings">Nastavení</string>
+    <string name="distance_traveled">Ujetá vzdálenost</string>
+    <string name="average_speed">Průměrná rychlost</string>
+    <string name="current_speed">Aktuální rychlost</string>
+    <string name="stop">Zastavit</string>
+    <string name="connection_ready">Připojeno</string>
+    <string name="empty_wheel_diam">Průměr nemůže být prázdný</string>
+    <string name="configuration_saved">Konfigurace uložena</string>
+    <string name="tracking_started">Sledování zahájeno</string>
+    <string name="tracking_stopped">Zastavování a ukládání relace</string>
+    <string name="disconnected">Odpojeno</string>
+    <string name="connected">Připojeno</string>
+    <string name="connect">Připojit</string>
+    <string name="pause">Pozastavit</string>
+    <string name="tracking_service_channel">Služba sledování</string>
+    <string name="tracking_notification">Tahometr běží</string>
+    <string name="connection_error">Nelze se připojit</string>
+    <string name="unexpected_error">Neočekávaná chyba</string>
+    <string name="subsciption_error">Nepodařilo se odebírat zprávy zařizení</string>
+    <string name="lost_connection_error">Ztraceno připojení k zařízení</string>
+    <string name="tracking_paused">Sledováni pozastaveno</string>
+    <string name="tracking_unpaused">Sledování obnoveno</string>
+    <string name="resume">Pokračovat</string>
+</resources>
